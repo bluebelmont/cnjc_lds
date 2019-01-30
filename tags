@@ -2792,7 +2792,7 @@ initialize	ssm/transitions.py	/^    def initialize(self, datas, inputs, masks, t
 initialize_from_arhmm	ssm/emissions.py	/^    def initialize_from_arhmm(self, arhmm, pca):$/;"	m	class:_Emissions
 initialize_variational_params	ssm/hierarchical.py	/^    def initialize_variational_params(self, data, input, mask, tag):$/;"	m	class:HierarchicalEmissions
 initmessages	ssm/messages.cpp	/^__Pyx_PyMODINIT_FUNC initmessages(void)$/;"	f
-install_requires	setup.py	/^      install_requires=['cython', 'numpy', 'scipy', 'matplotlib', 'scikit-learn', 'tqdm', 'autograd'],$/;"	v
+install_requires	setup.py	/^      install_requires=['numpy', 'scipy', 'matplotlib', 'scikit-learn', 'tqdm', 'autograd'],$/;"	v
 intern	ssm/cstats.cpp	/^                const char is_unicode; const char is_str; const char intern; } __Pyx_StringTabEntry;$/;"	m	struct:__anon31	file:
 intern	ssm/messages.cpp	/^                const char is_unicode; const char is_str; const char intern; } __Pyx_StringTabEntry;$/;"	m	struct:__anon2	file:
 interpolate_data	ssm/emissions.py	/^from ssm.preprocessing import interpolate_data, pca_with_imputation$/;"	i
