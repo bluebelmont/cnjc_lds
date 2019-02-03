@@ -35,11 +35,11 @@ def test_implementation(user_function):
             return
     
 
-    if not X.all() == X_user.all():
-        if not Y.all() == Y_user.all():
+    if not np.array_equal(X, X_user):
+        if not np.array_equal(Y, Y_user):
             print('Try again! Neither X nor Y matches our solution.')
     else:
-        if not Y.all() == Y_user.all():
+        if not np.array_equal(Y, Y_user):
             print('Try again! X matches our solution, but Y does not')
         else:
             print('Good job! Your implementation matches our solution')
