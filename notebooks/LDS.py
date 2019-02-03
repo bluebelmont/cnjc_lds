@@ -118,7 +118,7 @@ class gLDS(object):
             A (np.ndarray): State dynamics matrix (d_latent, d_latent)
             C (np.ndarray): Observation matrix (d_obs, d_latent)
             Q (np.ndarray): Covariance matrix of state noise (d_latent, d_latent)
-            R (np.ndarray): Covariance "matrix" of observation noise; only diagonal elements (d_obs,)
+            R (np.ndarray): Covariance matrix of observation noise; only diagonal elements (d_obs, )
             pi_0 (np.ndarray): Initial state estimate (d_latent, )
             V_0 (np.ndarray): Initial state covariance estimate (d_latent, )
 
@@ -310,6 +310,10 @@ class gLDS(object):
         return model_explained_variances, psth_explained_variances
     @staticmethod
     def get_likelihood(y, A, C, Q, R, pi_0, V_0):
+        if Q.ndim == 2:
+            Q = np.diag(Q)
+        if R.ndim == 2:
+            R = np.diag(R)
         ret = gLDS._e_step(y, A, C, np.diag(Q), R, pi_0, V_0)
         likelihood = ret[-1]
         return likelihood
