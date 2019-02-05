@@ -12,6 +12,7 @@ AutoRegressiveNeuralNetworkEmissions	ssm/emissions.py	/^class AutoRegressiveNeur
 AutoRegressiveNeuralNetworkEmissions	ssm/models.py	/^    AutoRegressiveNeuralNetworkEmissions$/;"	i
 AutoRegressiveObservations	ssm/models.py	/^    RecurrentRobustAutoRegressiveObservations$/;"	i
 AutoRegressiveObservations	ssm/observations.py	/^class AutoRegressiveObservations(_Observations):$/;"	c
+Axes3D	code/plotting_util.py	/^from mpl_toolkits.mplot3d import Axes3D$/;"	i
 BASE	ssm/cstats.cpp	/^  #undef BASE$/;"	d	file:
 BASE	ssm/messages.cpp	/^  #undef BASE$/;"	d	file:
 BernoulliEmissions	ssm/emissions.py	/^class BernoulliEmissions(_BernoulliEmissionsMixin, _LinearEmissions):$/;"	c
@@ -205,6 +206,7 @@ GaussianObservations	ssm/observations.py	/^class GaussianObservations(_Observati
 HAVE_LONG_LONG	ssm/cstats.cpp	/^    #define HAVE_LONG_LONG$/;"	d	file:
 HAVE_LONG_LONG	ssm/messages.cpp	/^    #define HAVE_LONG_LONG$/;"	d	file:
 HMM	ssm/models.py	/^def HMM(K, D, M=0,$/;"	f
+HTML	code/plotting_util.py	/^from IPython.display import HTML$/;"	i
 HierarchicalEmissions	ssm/hierarchical.py	/^class HierarchicalEmissions(_Hierarchical):$/;"	c
 HierarchicalEmissions	ssm/models.py	/^    HierarchicalEmissions$/;"	i
 HierarchicalInitialStateDistribution	ssm/hierarchical.py	/^class HierarchicalInitialStateDistribution(_Hierarchical):$/;"	c
@@ -227,7 +229,6 @@ InputDrivenTransitions	ssm/models.py	/^    NeuralNetworkRecurrentTransitions$/;"
 InputDrivenTransitions	ssm/transitions.py	/^class InputDrivenTransitions(StickyTransitions):$/;"	c
 KMeans	ssm/observations.py	/^        from sklearn.cluster import KMeans$/;"	i
 LA	code/LDS.py	/^import numpy.linalg as LA$/;"	i
-LA	code/util/np_utils.py	/^import numpy.linalg as LA$/;"	i
 LDS	ssm/models.py	/^def LDS(N, D, M=0,$/;"	f
 LinearRegression	ssm/emissions.py	/^            from sklearn.linear_model import LinearRegression$/;"	i
 LinearRegression	ssm/emissions.py	/^        from sklearn.linear_model import LinearRegression$/;"	i
@@ -245,7 +246,6 @@ PY_LONG_LONG	ssm/cstats.cpp	/^  #define PY_LONG_LONG /;"	d	file:
 PY_LONG_LONG	ssm/messages.cpp	/^  #define PY_LONG_LONG /;"	d	file:
 PY_SSIZE_T_CLEAN	ssm/cstats.cpp	/^#define PY_SSIZE_T_CLEAN$/;"	d	file:
 PY_SSIZE_T_CLEAN	ssm/messages.cpp	/^#define PY_SSIZE_T_CLEAN$/;"	d	file:
-PerturbationData	code/util/data.py	/^class PerturbationData(object):$/;"	c
 PoissonEmissions	ssm/emissions.py	/^class PoissonEmissions(_PoissonEmissionsMixin, _LinearEmissions):$/;"	c
 PoissonEmissions	ssm/models.py	/^    AutoRegressiveNeuralNetworkEmissions$/;"	i
 PoissonIdentityEmissions	ssm/emissions.py	/^class PoissonIdentityEmissions(_PoissonEmissionsMixin, _IdentityEmissions):$/;"	c
@@ -1194,8 +1194,6 @@ __Pyx_uchar_cast	ssm/messages.cpp	/^#define __Pyx_uchar_cast(/;"	d	file:
 __Pyx_void_to_None	ssm/cstats.cpp	/^#define __Pyx_void_to_None(/;"	d	file:
 __Pyx_void_to_None	ssm/messages.cpp	/^#define __Pyx_void_to_None(/;"	d	file:
 __author__	code/LDS.py	/^__author__ = 'Blue Sheffer'$/;"	v
-__author__	code/util/data.py	/^__author__ = 'Blue Sheffer'$/;"	v
-__author__	code/util/np_utils.py	/^__author__ = 'Blue Sheffer'$/;"	v
 __cdecl	ssm/cstats.cpp	/^    #define __cdecl$/;"	d	file:
 __cdecl	ssm/messages.cpp	/^    #define __cdecl$/;"	d	file:
 __fastcall	ssm/cstats.cpp	/^    #define __fastcall$/;"	d	file:
@@ -1205,7 +1203,6 @@ __has_attribute	ssm/messages.cpp	/^  #define __has_attribute(/;"	d	file:
 __has_cpp_attribute	ssm/cstats.cpp	/^  #define __has_cpp_attribute(/;"	d	file:
 __has_cpp_attribute	ssm/messages.cpp	/^  #define __has_cpp_attribute(/;"	d	file:
 __init__	code/LDS.py	/^    def __init__(self):$/;"	m	class:gLDS
-__init__	code/util/data.py	/^    def __init__(self, data_dir="..\/data\/", filepaths=[], exclude_early=True):$/;"	m	class:PerturbationData
 __init__	ssm/core.py	/^    def __init__(self, K, D, M, init_state_distn, transitions, observations):$/;"	m	class:_HMM
 __init__	ssm/core.py	/^    def __init__(self, N, D, M, dynamics, emissions):$/;"	m	class:_LDS
 __init__	ssm/core.py	/^    def __init__(self, N, K, D, M, init_state_distn, transitions, dynamics, emissions):$/;"	m	class:_SwitchingLDS
@@ -2516,13 +2513,15 @@ adam	ssm/optimizers.py	/^adam = partial(_generic_sgd, "adam")$/;"	v
 adam	ssm/transitions.py	/^from ssm.optimizers import adam, bfgs, rmsprop, sgd$/;"	i
 adam_step	ssm/core.py	/^from ssm.optimizers import adam_step, rmsprop_step, sgd_step, convex_combination$/;"	i
 adam_step	ssm/optimizers.py	/^def adam_step(value_and_grad, x, itr, state=None, step_size=0.001, b1=0.9, b2=0.999, eps=10**-8):$/;"	f
-add_spikes	code/util/data.py	/^    def add_spikes(self):$/;"	m	class:PerturbationData
 am_aiter	ssm/cstats.cpp	/^        unaryfunc am_aiter;$/;"	m	struct:__anon30	file:
 am_aiter	ssm/messages.cpp	/^        unaryfunc am_aiter;$/;"	m	struct:__anon1	file:
 am_anext	ssm/cstats.cpp	/^        unaryfunc am_anext;$/;"	m	struct:__anon30	file:
 am_anext	ssm/messages.cpp	/^        unaryfunc am_anext;$/;"	m	struct:__anon1	file:
 am_await	ssm/cstats.cpp	/^        unaryfunc am_await;$/;"	m	struct:__anon30	file:
 am_await	ssm/messages.cpp	/^        unaryfunc am_await;$/;"	m	struct:__anon1	file:
+angles_to_skeleton	code/worm_util.py	/^def angles_to_skeleton(joint_angles):$/;"	f
+animate	code/plotting_util.py	/^    def animate(i):$/;"	f	function:plot_crawling_worm
+animation	code/plotting_util.py	/^from matplotlib import animation, rc$/;"	i
 approximate_posterior	ssm/core.py	/^    def approximate_posterior(self, variational_posterior, datas, inputs=None, masks=None, tags=None, $/;"	m	class:_SwitchingLDS
 arraysize	ssm/cstats.cpp	/^  size_t arraysize[8];$/;"	m	struct:__anon33	file:
 arraysize	ssm/messages.cpp	/^  size_t arraysize[8];$/;"	m	struct:__anon4	file:
@@ -2531,6 +2530,7 @@ assert_direct_dimensions	ssm/messages.cpp	/^static PyObject *assert_direct_dimen
 assign_item_from_object	ssm/cstats.cpp	/^  PyObject *(*assign_item_from_object)(struct __pyx_memoryview_obj *, char *, PyObject *);$/;"	m	struct:__pyx_vtabstruct_memoryview	file:
 assign_item_from_object	ssm/messages.cpp	/^  PyObject *(*assign_item_from_object)(struct __pyx_memoryview_obj *, char *, PyObject *);$/;"	m	struct:__pyx_vtabstruct_memoryview	file:
 author	setup.py	/^      author='Scott Linderman',$/;"	v
+autograd	code/worm_util.py	/^import autograd.numpy as np$/;"	i
 autograd	ssm/core.py	/^import autograd.numpy as np$/;"	i
 autograd	ssm/core.py	/^import autograd.numpy.random as npr$/;"	i
 autograd	ssm/emissions.py	/^import autograd.numpy as np$/;"	i
@@ -2607,6 +2607,7 @@ code_line	ssm/cstats.cpp	/^    int code_line;$/;"	m	struct:__anon39	file:
 code_line	ssm/messages.cpp	/^    int code_line;$/;"	m	struct:__anon10	file:
 code_object	ssm/cstats.cpp	/^    PyCodeObject* code_object;$/;"	m	struct:__anon39	file:
 code_object	ssm/messages.cpp	/^    PyCodeObject* code_object;$/;"	m	struct:__anon10	file:
+collections	code/worm_util.py	/^import collections$/;"	i
 compute_state_overlap	ssm/util.py	/^def compute_state_overlap(z1, z2, K1=None, K2=None):$/;"	f
 contiguous	ssm/cstats.cpp	/^static PyObject *contiguous = 0;$/;"	v	file:
 contiguous	ssm/messages.cpp	/^static PyObject *contiguous = 0;$/;"	v	file:
@@ -2630,7 +2631,6 @@ data	ssm/messages.cpp	/^  char *data;$/;"	m	struct:__anon13	file:
 data	ssm/messages.cpp	/^  char *data;$/;"	m	struct:__anon3	file:
 data	ssm/messages.cpp	/^  char *data;$/;"	m	struct:__pyx_array_obj	file:
 defvjp	ssm/primitives.py	/^from autograd.extend import primitive, defvjp$/;"	i
-delay_align_spike_times	code/util/data.py	/^    def delay_align_spike_times(self):$/;"	m	class:PerturbationData
 description	setup.py	/^      description='State space models in python',$/;"	v
 diagonal_gaussian_logpdf	ssm/stats.py	/^def diagonal_gaussian_logpdf(data, mus, sigmasqs, mask=None):$/;"	f
 digamma	ssm/observations.py	/^from autograd.scipy.special import gammaln, digamma$/;"	i
@@ -2686,9 +2686,6 @@ field	ssm/messages.cpp	/^  __Pyx_StructField* field;$/;"	m	struct:__anon5	file:
 fields	ssm/cstats.cpp	/^  struct __Pyx_StructField_* fields;$/;"	m	struct:__anon33	typeref:struct:__anon33::__Pyx_StructField_	file:
 fields	ssm/messages.cpp	/^  struct __Pyx_StructField_* fields;$/;"	m	struct:__anon4	typeref:struct:__anon4::__Pyx_StructField_	file:
 filter	ssm/core.py	/^    def filter(self, data, input=None, mask=None, tag=None):$/;"	m	class:_HMM
-filter_neurons	code/util/data.py	/^    def filter_neurons(self):$/;"	m	class:PerturbationData
-filter_trials	code/util/data.py	/^    def filter_trials(self):$/;"	m	class:PerturbationData
-find_max_time	code/util/data.py	/^def find_max_time(data_dir, filenames):$/;"	f
 find_permutation	ssm/util.py	/^def find_permutation(z1, z2, K1=None, K2=None):$/;"	f
 fit	code/LDS.py	/^    def fit(self, y, d_latent, num_iterations=100):$/;"	m	class:gLDS
 fit	ssm/core.py	/^    def fit(self, datas, inputs=None, masks=None, tags=None, method="em", initialize=True, **kwargs):$/;"	m	class:_HMM
@@ -2729,6 +2726,7 @@ generalized_newton_studentst_dof	ssm/observations.py	/^    logistic, logit, one_
 generalized_newton_studentst_dof	ssm/util.py	/^def generalized_newton_studentst_dof(E_tau, E_logtau, nu0=1, max_iter=100, nu_min=1e-3, nu_max=20, tol=1e-8, verbose=False):$/;"	f
 generic	ssm/cstats.cpp	/^static PyObject *generic = 0;$/;"	v	file:
 generic	ssm/messages.cpp	/^static PyObject *generic = 0;$/;"	v	file:
+get_fps	code/worm_util.py	/^def get_fps(data):$/;"	f
 get_item_pointer	ssm/cstats.cpp	/^  char *(*get_item_pointer)(struct __pyx_memoryview_obj *, PyObject *);$/;"	m	struct:__pyx_vtabstruct_memoryview	file:
 get_item_pointer	ssm/messages.cpp	/^  char *(*get_item_pointer)(struct __pyx_memoryview_obj *, PyObject *);$/;"	m	struct:__pyx_vtabstruct_memoryview	file:
 get_likelihood	code/LDS.py	/^    def get_likelihood(y, A, C, Q, R, pi_0, V_0):$/;"	m	class:gLDS
@@ -2744,6 +2742,7 @@ grad_cholesky_banded	ssm/primitives.py	/^def grad_cholesky_banded(L_banded, A_ba
 grad_hmm_normalizer	ssm/messages.pyx	/^cpdef grad_hmm_normalizer(double[:,:,::1] log_Ps,$/;"	f
 grad_hmm_normalizer	ssm/primitives.py	/^from ssm.messages import forward_pass, backward_pass, backward_sample, grad_hmm_normalizer$/;"	i
 grad_transpose_banded	ssm/primitives.py	/^def grad_transpose_banded(ans, l_and_u, A_banded):$/;"	f
+h5py	code/worm_util.py	/^import h5py$/;"	i
 head	ssm/cstats.cpp	/^  __Pyx_BufFmt_StackElem* head;$/;"	m	struct:__anon35	file:
 head	ssm/messages.cpp	/^  __Pyx_BufFmt_StackElem* head;$/;"	m	struct:__anon6	file:
 hmm_expected_states	ssm/core.py	/^from ssm.primitives import hmm_normalizer, hmm_expected_states, hmm_filter, viterbi$/;"	i
@@ -2764,6 +2763,7 @@ indirect	ssm/cstats.cpp	/^static PyObject *indirect = 0;$/;"	v	file:
 indirect	ssm/messages.cpp	/^static PyObject *indirect = 0;$/;"	v	file:
 indirect_contiguous	ssm/cstats.cpp	/^static PyObject *indirect_contiguous = 0;$/;"	v	file:
 indirect_contiguous	ssm/messages.cpp	/^static PyObject *indirect_contiguous = 0;$/;"	v	file:
+init	code/plotting_util.py	/^    def init():$/;"	f	function:plot_crawling_worm
 init_state_distn	ssm/init_state_distns.py	/^    def init_state_distn(self):$/;"	m	class:InitialStateDistribution
 initcstats	ssm/cstats.cpp	/^__Pyx_PyMODINIT_FUNC initcstats(void)$/;"	f
 initialize	ssm/core.py	/^    def initialize(self, datas, inputs=None, masks=None, tags=None):$/;"	m	class:_HMM
@@ -2838,7 +2838,7 @@ likely	ssm/cstats.cpp	/^            #undef likely$/;"	d	file:
 likely	ssm/cstats.cpp	/^  #define likely(/;"	d	file:
 likely	ssm/messages.cpp	/^  #define likely(/;"	d	file:
 linear_sum_assignment	ssm/util.py	/^from scipy.optimize import linear_sum_assignment, minimize$/;"	i
-load_sessions	code/util/data.py	/^    def load_sessions(self, filepaths):$/;"	m	class:PerturbationData
+load_worm_data	code/worm_util.py	/^def load_worm_data():$/;"	f
 lock	ssm/cstats.cpp	/^  PyThread_type_lock lock;$/;"	m	struct:__pyx_memoryview_obj	file:
 lock	ssm/messages.cpp	/^  PyThread_type_lock lock;$/;"	m	struct:__pyx_memoryview_obj	file:
 log	ssm/messages.pyx	/^from libc.math cimport log, exp, fmax, INFINITY$/;"	i
@@ -2924,6 +2924,7 @@ m_step	ssm/transitions.py	/^    def m_step(self, expectations, datas, inputs, ma
 m_step	ssm/transitions.py	/^    def m_step(self, expectations, datas, inputs, masks, tags, **kwargs):$/;"	m	class:StickyTransitions
 m_step	ssm/transitions.py	/^    def m_step(self, expectations, datas, inputs, masks, tags, optimizer="adam", num_iters=100, **kwargs):$/;"	m	class:NeuralNetworkRecurrentTransitions
 m_step	ssm/transitions.py	/^    def m_step(self, expectations, datas, inputs, masks, tags, optimizer="bfgs", num_iters=100, **kwargs):$/;"	m	class:_Transitions
+matplotlib	code/plotting_util.py	/^import matplotlib.pyplot as plt$/;"	i
 max_count	ssm/cstats.cpp	/^    int max_count;$/;"	m	struct:__Pyx_CodeObjectCache	file:
 max_count	ssm/messages.cpp	/^    int max_count;$/;"	m	struct:__Pyx_CodeObjectCache	file:
 mean	ssm/variational.py	/^    def mean(self):$/;"	m	class:SLDSMeanFieldVariationalPosterior
@@ -2940,15 +2941,16 @@ most_likely_states	ssm/core.py	/^    def most_likely_states(self, variational_me
 most_likely_states	ssm/core.py	/^    def most_likely_states(self, variational_mean, data, input=None, mask=None, tag=None):$/;"	m	class:_SwitchingLDS
 multivariate_normal_logpdf	ssm/stats.py	/^def multivariate_normal_logpdf(data, mus, Sigmas, mask=None):$/;"	f
 multivariate_normal_logpdf	ssm/transitions.py	/^from ssm.stats import multivariate_normal_logpdf$/;"	i
+mystery_function	code/tutorial_util.py	/^def mystery_function(A, C, Q, R, pi_0, V_0, num_timesteps, seed=0):$/;"	f
 n	ssm/cstats.cpp	/^typedef struct {PyObject **p; const char *s; const Py_ssize_t n; const char* encoding;$/;"	m	struct:__anon31	file:
 n	ssm/messages.cpp	/^typedef struct {PyObject **p; const char *s; const Py_ssize_t n; const char* encoding;$/;"	m	struct:__anon2	file:
-naive_smooth	code/util/data.py	/^def naive_smooth(matrix, bin_size, step_size):$/;"	f
 name	ssm/cstats.cpp	/^  PyObject *name;$/;"	m	struct:__pyx_MemviewEnum_obj	file:
 name	ssm/cstats.cpp	/^  const char* name;$/;"	m	struct:__Pyx_StructField_	file:
 name	ssm/cstats.cpp	/^  const char* name;$/;"	m	struct:__anon33	file:
 name	ssm/messages.cpp	/^  PyObject *name;$/;"	m	struct:__pyx_MemviewEnum_obj	file:
 name	ssm/messages.cpp	/^  const char* name;$/;"	m	struct:__Pyx_StructField_	file:
 name	ssm/messages.cpp	/^  const char* name;$/;"	m	struct:__anon4	file:
+nan_interpolate2d	code/worm_util.py	/^def nan_interpolate2d(X):$/;"	f
 ndim	ssm/cstats.cpp	/^  int ndim;$/;"	m	struct:__anon33	file:
 ndim	ssm/cstats.cpp	/^  int ndim;$/;"	m	struct:__pyx_array_obj	file:
 ndim	ssm/messages.cpp	/^  int ndim;$/;"	m	struct:__anon4	file:
@@ -2959,9 +2961,9 @@ new_packmode	ssm/cstats.cpp	/^  char new_packmode;$/;"	m	struct:__anon35	file:
 new_packmode	ssm/messages.cpp	/^  char new_packmode;$/;"	m	struct:__anon6	file:
 norm	ssm/hierarchical.py	/^from autograd.scipy.stats import norm$/;"	i
 np	code/LDS.py	/^import numpy as np$/;"	i
-np	code/util/data.py	/^import numpy as np$/;"	i
-np	code/util/np_utils.py	/^import numpy as np$/;"	i
-np	code/util/plotting.py	/^import numpy as np$/;"	i
+np	code/plotting_util.py	/^import numpy as np$/;"	i
+np	code/tutorial_util.py	/^import numpy as np$/;"	i
+np	code/worm_util.py	/^import autograd.numpy as np$/;"	i
 np	setup.py	/^import numpy as np$/;"	i
 np	ssm/core.py	/^import autograd.numpy as np$/;"	i
 np	ssm/cstats.pyx	/^cimport numpy as np$/;"	i
@@ -2989,7 +2991,6 @@ npr	ssm/transitions.py	/^import autograd.numpy.random as npr$/;"	i
 npr	ssm/util.py	/^import autograd.numpy.random as npr$/;"	i
 npr	ssm/variational.py	/^import autograd.numpy.random as npr$/;"	i
 numpy	code/LDS.py	/^import numpy.linalg as LA$/;"	i
-numpy	code/util/np_utils.py	/^import numpy.linalg as LA$/;"	i
 numpy	ssm/core.py	/^import autograd.numpy.random as npr$/;"	i
 numpy	ssm/emissions.py	/^import autograd.numpy.random as npr$/;"	i
 numpy	ssm/hierarchical.py	/^import autograd.numpy.random as npr$/;"	i
@@ -3019,8 +3020,8 @@ operator ==	ssm/cstats.cpp	/^    template<typename U> bool operator ==(U other) 
 operator ==	ssm/messages.cpp	/^    template<typename U> bool operator ==(U other) { return *ptr == other; }$/;"	f	class:__Pyx_FakeReference
 operator T&	ssm/cstats.cpp	/^    operator T&() { return *ptr; }$/;"	f	class:__Pyx_FakeReference
 operator T&	ssm/messages.cpp	/^    operator T&() { return *ptr; }$/;"	f	class:__Pyx_FakeReference
-os	code/util/data.py	/^import os$/;"	i
-os	code/util/plotting.py	/^import os$/;"	i
+os	code/plotting_util.py	/^import os$/;"	i
+os	code/worm_util.py	/^import os$/;"	i
 os	setup.py	/^import os$/;"	i
 p	ssm/cstats.cpp	/^typedef struct {PyObject **p; const char *s; const Py_ssize_t n; const char* encoding;$/;"	m	struct:__anon31	file:
 p	ssm/messages.cpp	/^typedef struct {PyObject **p; const char *s; const Py_ssize_t n; const char* encoding;$/;"	m	struct:__anon2	file:
@@ -3095,7 +3096,6 @@ partial	ssm/primitives.py	/^from functools import partial$/;"	i
 partial	ssm/transitions.py	/^from functools import partial$/;"	i
 pca_with_imputation	ssm/emissions.py	/^from ssm.preprocessing import interpolate_data, pca_with_imputation$/;"	i
 pca_with_imputation	ssm/preprocessing.py	/^def pca_with_imputation(D, datas, masks, num_iters=20):$/;"	f
-pd	code/util/data.py	/^import pandas as pd$/;"	i
 permute	ssm/core.py	/^    def permute(self, perm):$/;"	m	class:_HMM
 permute	ssm/core.py	/^    def permute(self, perm):$/;"	m	class:_SwitchingLDS
 permute	ssm/emissions.py	/^    def permute(self, perm):$/;"	m	class:_AutoRegressiveEmissionsMixin
@@ -3124,6 +3124,15 @@ permute	ssm/transitions.py	/^    def permute(self, perm):$/;"	m	class:RecurrentO
 permute	ssm/transitions.py	/^    def permute(self, perm):$/;"	m	class:RecurrentTransitions
 permute	ssm/transitions.py	/^    def permute(self, perm):$/;"	m	class:StationaryTransitions
 permute	ssm/transitions.py	/^    def permute(self, perm):$/;"	m	class:_Transitions
+plot_crawling_worm	code/plotting_util.py	/^def plot_crawling_worm(coordinates,colors=np.array([])):$/;"	f
+plot_discrete_state_behavioral_histograms	code/plotting_util.py	/^def plot_discrete_state_behavioral_histograms(hmm_z, all_modes):$/;"	f
+plot_discrete_states	code/plotting_util.py	/^def plot_discrete_states(z, max_time):$/;"	f
+plot_eigen_projections	code/plotting_util.py	/^def plot_eigen_projections(eigen_projections, fps):$/;"	f
+plot_eigen_worms	code/plotting_util.py	/^def plot_eigen_worms(eigen_worms):$/;"	f
+plot_latents_over_time	code/plotting_util.py	/^def plot_latents_over_time(X):$/;"	f
+plot_observations_over_time	code/plotting_util.py	/^def plot_observations_over_time(Y):$/;"	f
+plot_vector_field	code/plotting_util.py	/^def plot_vector_field(*args, color='black'):$/;"	f
+plt	code/plotting_util.py	/^import matplotlib.pyplot as plt$/;"	i
 poisson_logpdf	ssm/stats.py	/^def poisson_logpdf(data, lambdas, mask=None):$/;"	f
 polygamma	ssm/util.py	/^    from scipy.special import digamma, polygamma$/;"	i
 prange	ssm/cstats.pyx	/^from cython.parallel import prange$/;"	i
@@ -3132,9 +3141,9 @@ ptr	ssm/cstats.cpp	/^    T *ptr;$/;"	m	class:__Pyx_FakeReference	file:
 ptr	ssm/messages.cpp	/^    T *ptr;$/;"	m	class:__Pyx_FakeReference	file:
 pybuffer	ssm/cstats.cpp	/^  Py_buffer pybuffer;$/;"	m	struct:__anon41	file:
 pybuffer	ssm/messages.cpp	/^  Py_buffer pybuffer;$/;"	m	struct:__anon12	file:
-random_rotation	code/util/np_utils.py	/^def random_rotation(n, theta=None):$/;"	f
 random_rotation	ssm/observations.py	/^    logistic, logit, one_hot, generalized_newton_studentst_dof, fit_linear_regression$/;"	i
 random_rotation	ssm/util.py	/^def random_rotation(n, theta=None):$/;"	f
+rc	code/plotting_util.py	/^from matplotlib import animation, rc$/;"	i
 rcbuffer	ssm/cstats.cpp	/^  __Pyx_Buffer *rcbuffer;$/;"	m	struct:__anon42	file:
 rcbuffer	ssm/messages.cpp	/^  __Pyx_Buffer *rcbuffer;$/;"	m	struct:__anon13	file:
 real	ssm/cstats.cpp	/^    typedef struct { double real, imag; } __pyx_t_double_complex;$/;"	m	struct:__anon37	file:
@@ -3145,7 +3154,7 @@ refcount	ssm/cstats.cpp	/^  size_t refcount;$/;"	m	struct:__anon41	file:
 refcount	ssm/messages.cpp	/^  size_t refcount;$/;"	m	struct:__anon12	file:
 relu	ssm/transitions.py	/^from ssm.util import one_hot, logistic, relu, fit_multiclass_logistic_regression$/;"	i
 relu	ssm/util.py	/^def relu(x):$/;"	f
-remove_frame	code/util/plotting.py	/^def remove_frame(ax_array,all_off=False):$/;"	f
+remove_frame	code/plotting_util.py	/^def remove_frame(ax_array,all_off=False):$/;"	f
 rle	ssm/util.py	/^def rle(stateseq):$/;"	f
 rmsprop	ssm/observations.py	/^from ssm.optimizers import adam, bfgs, rmsprop, sgd$/;"	i
 rmsprop	ssm/optimizers.py	/^rmsprop = partial(_generic_sgd, "rmsprop")$/;"	v
@@ -3182,9 +3191,11 @@ sample_x	ssm/observations.py	/^    def sample_x(self, z, xhist, input=None, tag=
 sample_x	ssm/observations.py	/^    def sample_x(self, z, xhist, input=None, tag=None, with_noise=True):$/;"	m	class:VonMisesObservations
 sample_x	ssm/observations.py	/^    def sample_x(self, z, xhist, input=None, tag=None, with_noise=True):$/;"	m	class:_Observations
 sample_y	ssm/hierarchical.py	/^    def sample_y(self, z, x, input=None, tag=None):$/;"	m	class:HierarchicalEmissions
-savefig	code/util/plotting.py	/^def savefig(fig, title, save_path='..\/figures\/'):$/;"	f
-scio	code/util/data.py	/^import scipy.io as scio$/;"	i
-scipy	code/util/data.py	/^import scipy.io as scio$/;"	i
+savefig	code/plotting_util.py	/^def savefig(fig, title, save_path='..\/figures\/'):$/;"	f
+scatter_animation_2D	code/plotting_util.py	/^def scatter_animation_2D(X):$/;"	f
+scatter_animation_2D_and_3D	code/plotting_util.py	/^def scatter_animation_2D_and_3D(X, Y):$/;"	f
+scatter_animation_3D	code/plotting_util.py	/^def scatter_animation_3D(Y):$/;"	f
+scipy	code/worm_util.py	/^import scipy$/;"	i
 setitem_indexed	ssm/cstats.cpp	/^  PyObject *(*setitem_indexed)(struct __pyx_memoryview_obj *, PyObject *, PyObject *);$/;"	m	struct:__pyx_vtabstruct_memoryview	file:
 setitem_indexed	ssm/messages.cpp	/^  PyObject *(*setitem_indexed)(struct __pyx_memoryview_obj *, PyObject *, PyObject *);$/;"	m	struct:__pyx_vtabstruct_memoryview	file:
 setitem_slice_assign_scalar	ssm/cstats.cpp	/^  PyObject *(*setitem_slice_assign_scalar)(struct __pyx_memoryview_obj *, struct __pyx_memoryview_obj *, PyObject *);$/;"	m	struct:__pyx_vtabstruct_memoryview	file:
@@ -3225,16 +3236,14 @@ smooth	ssm/observations.py	/^    def smooth(self, expectations, data, input, tag
 smooth	ssm/observations.py	/^    def smooth(self, expectations, data, input, tag):$/;"	m	class:StudentsTObservations
 smooth	ssm/observations.py	/^    def smooth(self, expectations, data, input, tag):$/;"	m	class:VonMisesObservations
 smooth	ssm/observations.py	/^    def smooth(self, expectations, data, input, tag):$/;"	m	class:_Observations
-sns	code/util/plotting.py	/^import seaborn as sns$/;"	i
+sns	code/plotting_util.py	/^import seaborn as sns$/;"	i
 softplus	ssm/emissions.py	/^    ensure_slds_args_not_none, logistic, logit, softplus, inv_softplus$/;"	i
 softplus	ssm/util.py	/^def softplus(x):$/;"	f
 solve_banded	ssm/primitives.py	/^from autograd.scipy.linalg import cholesky_banded, solve_banded, solveh_banded$/;"	i
 solve_lds	ssm/primitives.py	/^def solve_lds(As, bs, Qi_sqrts, ms, Ri_sqrts, v):$/;"	f
 solveh_banded	ssm/primitives.py	/^from autograd.scipy.linalg import cholesky_banded, solve_banded, solveh_banded$/;"	i
-sort_by_column_norm	code/util/np_utils.py	/^def sort_by_column_norm(A, *args):$/;"	f
 sources	setup.py	/^              sources=["ssm\/cstats.pyx"],$/;"	v
 sources	setup.py	/^              sources=["ssm\/messages.pyx"],$/;"	v
-sparse	code/util/data.py	/^import sparse$/;"	i
 ssm	ssm/observations.py	/^import ssm.stats as stats$/;"	i
 standardize	ssm/preprocessing.py	/^def standardize(data, mask): $/;"	f
 stats	ssm/observations.py	/^import ssm.stats as stats$/;"	i
@@ -3250,6 +3259,7 @@ suboffsets	ssm/cstats.cpp	/^  Py_ssize_t shape, strides, suboffsets;$/;"	m	struc
 suboffsets	ssm/cstats.cpp	/^  Py_ssize_t suboffsets[8];$/;"	m	struct:__anon32	file:
 suboffsets	ssm/messages.cpp	/^  Py_ssize_t shape, strides, suboffsets;$/;"	m	struct:__anon11	file:
 suboffsets	ssm/messages.cpp	/^  Py_ssize_t suboffsets[8];$/;"	m	struct:__anon3	file:
+test_implementation	code/tutorial_util.py	/^def test_implementation(user_function):$/;"	f
 to_c	ssm/primitives.py	/^to_c = lambda arr: np.copy(getval(arr), 'C') if not arr.flags['C_CONTIGUOUS'] else getval(arr)$/;"	v
 to_dtype_func	ssm/cstats.cpp	/^  int (*to_dtype_func)(char *, PyObject *);$/;"	m	struct:__pyx_memoryviewslice_obj	file:
 to_dtype_func	ssm/messages.cpp	/^  int (*to_dtype_func)(char *, PyObject *);$/;"	m	struct:__pyx_memoryviewslice_obj	file:
@@ -3282,6 +3292,10 @@ unlikely	ssm/cstats.cpp	/^            #define unlikely(/;"	d	file:
 unlikely	ssm/cstats.cpp	/^            #undef unlikely$/;"	d	file:
 unlikely	ssm/cstats.cpp	/^  #define unlikely(/;"	d	file:
 unlikely	ssm/messages.cpp	/^  #define unlikely(/;"	d	file:
+update_plot	code/plotting_util.py	/^    def update_plot(i, X, Y, X_scatter, Y_scatter):$/;"	f	function:scatter_animation_2D_and_3D
+update_plot	code/plotting_util.py	/^    def update_plot(i, data, scatter):$/;"	f	function:scatter_animation_2D
+update_plot	code/plotting_util.py	/^    def update_plot(i, data, scatter):$/;"	f	function:scatter_animation_3D
+util	code/tutorial_util.py	/^from ssm import util$/;"	i
 value_and_grad	ssm/core.py	/^from autograd import value_and_grad$/;"	i
 value_and_grad	ssm/optimizers.py	/^from autograd import grad, value_and_grad$/;"	i
 version	setup.py	/^      version='0.0.1',$/;"	v
@@ -3309,6 +3323,7 @@ warn	ssm/util.py	/^from warnings import warn$/;"	i
 warnings	ssm/core.py	/^import warnings$/;"	i
 warnings	ssm/hierarchical.py	/^import warnings$/;"	i
 warnings	ssm/observations.py	/^import warnings$/;"	i
+worm_util	code/plotting_util.py	/^import worm_util$/;"	i
 wrapper	ssm/util.py	/^    def wrapper(self, arg0, datas, inputs=None, masks=None, tags=None, **kwargs):$/;"	f	function:ensure_variational_args_are_lists
 wrapper	ssm/util.py	/^    def wrapper(self, data, input=None, mask=None, tag=None, **kwargs):$/;"	f	function:ensure_args_not_none
 wrapper	ssm/util.py	/^    def wrapper(self, datas, inputs=None, masks=None, tags=None, **kwargs):$/;"	f	function:ensure_args_are_lists
@@ -3346,4 +3361,4 @@ x	ssm/messages.cpp	/^typedef struct { long double x; char c; } __Pyx_pad_longdou
 x	ssm/messages.cpp	/^typedef struct { long x; char c; } __Pyx_pad_long;$/;"	m	struct:__anon24	file:
 x	ssm/messages.cpp	/^typedef struct { short x; char c; } __Pyx_pad_short;$/;"	m	struct:__anon22	file:
 x	ssm/messages.cpp	/^typedef struct { void *x; char c; } __Pyx_pad_void_p;$/;"	m	struct:__anon28	file:
-xkcd_colors	code/util/plotting.py	/^def xkcd_colors():$/;"	f
+xkcd_colors	code/plotting_util.py	/^def xkcd_colors():$/;"	f
