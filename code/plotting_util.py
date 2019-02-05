@@ -183,7 +183,7 @@ def plot_observations_over_time(Y):
     plt.tight_layout()
     
     
-def plot_crawling_worm(coordinates,colors=np.array([])):
+def plot_crawling_worm(coordinates,fps,colors=np.array([])):
     fig, ax = plt.subplots()
 
     plt.close()
@@ -206,7 +206,7 @@ def plot_crawling_worm(coordinates,colors=np.array([])):
         return (line,)
 
     anim = animation.FuncAnimation(fig, animate, init_func=init,
-                                   frames=T//20, interval=20)
+                                   frames=T, interval=1000/np.round(fps))
 
     return anim
 
