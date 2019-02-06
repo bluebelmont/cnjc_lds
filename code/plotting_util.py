@@ -224,9 +224,10 @@ def plot_eigen_projections(eigen_projections, fps):
     colors = xkcd_colors()
     T = 3000
     for i in np.arange(eigen_projections.shape[1]):
-        x = np.linspace(0, T*fps, T)
+        x = np.linspace(0, T*fps/1000, T)
         ax.plot(x, eigen_projections[:T,i] - 14*i, color = colors[i])
     ax.set_yticks([])
+    ax.set_xlabel('Time (s)')
     remove_frame(ax)
 
     

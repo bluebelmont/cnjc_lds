@@ -12,7 +12,6 @@ import numpy.linalg as LA
 from sklearn.decomposition import FactorAnalysis
 from sklearn import model_selection
 
-
 class gLDS(object):
 
     def __init__(self):
@@ -53,13 +52,17 @@ class gLDS(object):
             likelihood.append(lik)
 
         self.is_fit = True
-        self.A = A
+        x_s = np.squeeze(x_s)
+
+        C, sorted_args = sort_by_column_norm(C, rowargs=[A])
         self.C = C
+        self.A = sorted_args[0]
         self.Q = Q
         self.R = R
+
         self.pi_0 = pi_0
         self.V_0 = V_0
-        return np.squeeze(x_s), likelihood
+        return x_s, likelihood
 
     def transform(self, y):
         assert self.is_fit, "LDS has not been fit"
@@ -317,3 +320,16 @@ class gLDS(object):
         ret = gLDS._e_step(y, A, C, np.diag(Q), R, pi_0, V_0)
         likelihood = ret[-1]
         return likelihood
+
+def sort_by_column_norm(A, rowargs=[], colargs=[]):
+    descending_column_order = np.argsort(LA.norm(A, axis=0))[::-1]
+    sorted_args = []
+    for arg in rowargs:
+        sorted_args.append(arg[descending_column_order])
+    for arg in colargs:
+        sorted_args.append(arg[:,descending_column_order])
+    if len(sorted_args) > 0:
+        return A[:, descending_column_order], sorted_args
+    else:
+        return A[:, descending_column_order]
+
